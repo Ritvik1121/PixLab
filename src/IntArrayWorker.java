@@ -4,7 +4,7 @@ public class IntArrayWorker {
 
 	/**
 	 * set the matrix to the passed one
-	 * 
+	 *
 	 * @param theMatrix
 	 *            the one to use
 	 */
@@ -14,7 +14,7 @@ public class IntArrayWorker {
 
 	/**
 	 * Method to return the total
-	 * 
+	 *
 	 * @return the total of the values in the array
 	 */
 	public int getTotal() {
@@ -29,7 +29,7 @@ public class IntArrayWorker {
 
 	/**
 	 * Method to return the total using a nested for-each loop
-	 * 
+	 *
 	 * @return the total of the values in the array
 	 */
 	public int getTotalNested() {
@@ -85,4 +85,40 @@ public class IntArrayWorker {
 		}
 	}
 
+	public int getCount(int num){
+		int count = 0;
+		for (int row = 0; row < matrix.length; row++){
+			for (int col = 0; col < matrix[0].length; col++){
+				if (matrix[row][col] == num){
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+
+	public int getLargest(){
+		int largest = matrix[0][0];
+		for (int row = 0; row < matrix.length; row++){
+			for (int col = 0; col < matrix[0].length; col++){
+				if (matrix[row][col] > largest){
+					largest = matrix[row][col];
+				}
+			}
+		}
+		return largest;
+	}
+
+	public int getColTotal(int col){
+		int total = 0;
+		if (col < 0){
+			return total;
+		}
+		for (int row = 0; row < matrix.length; row++){
+			if (col < matrix[row].length){
+				total += matrix[row][col];
+			}
+		}
+		return total;
+	}
 }
