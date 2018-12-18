@@ -306,6 +306,22 @@ public void mirrorDiagonal() {
 		}
 	}
 
+	public void secondCopy(Picture fromPic, int startRow, int startCol) {
+		Pixel fromPixel = null;
+		Pixel toPixel = null;
+		Pixel[][] toPixels = this.getPixels2D();
+		Pixel[][] fromPixels = fromPic.getPixels2D();
+		for (int fromRow = 170, toRow = startRow; fromRow < fromPixels.length
+				&& toRow < toPixels.length; fromRow++, toRow++) {
+			for (int fromCol = 100, toCol = startCol; fromCol < fromPixels[0].length
+					&& toCol < toPixels[0].length; fromCol++, toCol++) {
+				fromPixel = fromPixels[fromRow][fromCol];
+				toPixel = toPixels[toRow][toCol];
+				toPixel.setColor(fromPixel.getColor());
+			}
+		}
+	}
+
 	/** Method to create a collage of several pictures */
 	public void createCollage() {
 		Picture flower1 = new Picture("flower1.jpg");
@@ -318,6 +334,16 @@ public void mirrorDiagonal() {
 		this.copy(flowerNoBlue, 300, 0);
 		this.copy(flower1, 400, 0);
 		this.copy(flower2, 500, 0);
+		this.mirrorVertical();
+		this.write("collage.jpg");
+	}
+
+	public void createMyCollage(){
+		Picture beach = new Picture("beach.jpg");
+		beach.Negate();
+		this.secondCopy(beach, 0, 0);
+		Picture snowman = new Picture("snowman.jpg");
+		this.secondCopy(snowman, 100, 100);
 		this.mirrorVertical();
 		this.write("collage.jpg");
 	}
